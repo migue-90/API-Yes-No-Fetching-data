@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Si o no?</title>
+    </head>
+    <body>
+
+	<button id="boton">¿Si o no?</button>
+	<p id="respuesta"></p>
+
+	<img alt="" id="imagen" src=""/>
+
+	<script>
+	 // Variables
+	 const boton = document.querySelector("#boton");
+	 const respuesta = document.querySelector("#respuesta");
+	 const urlAPI = "https://yesno.wtf/api/";
+	 const imagenDOM = document.querySelector("#imagen");
+
+	 // Funciones
+
+	 function obtenerRespuesta() {
+	     fetch(urlAPI)
+		 .then(function(response) {
+		     // Transforma la respuesta. En este caso lo convierte a JSON
+		     return response.json();
+		 })
+		 .then(json => {
+		     respuesta.textContent = json.answer;
+		     imagenDOM.setAttribute("src", json.image);
+		 });
+	 }
+
+	 // Eventos
+	 boton.addEventListener("click", obtenerRespuesta);
+
+	 // Inicio
+
+	</script>
+    </body>
+</html>
